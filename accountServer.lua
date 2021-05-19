@@ -7,15 +7,15 @@ local modem = component.modem
 local p = ttf.load("serverData")["port"]
 
 local function handleMessage(_, _, from, port, _, type, sender, receiver, amount)
-  if port ~= p then
-    return
-  end
+	if port ~= p then
+		return
+	end
 
-  if type == "transfer" then
-    modem.send(from, p, accounts:transfer(sender, receiver, amount))
-  elseif type == "getAmount" then
-    modem.send(from, p, accounts:getAmount(sender))
-  end
+	if type == "transfer" then
+		modem.send(from, p, accounts:transfer(sender, receiver, amount))
+	elseif type == "getAmount" then
+		modem.send(from, p, accounts:getAmount(sender))
+	end
   
 end
 
