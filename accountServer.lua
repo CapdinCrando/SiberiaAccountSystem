@@ -1,9 +1,10 @@
 local accounts = require("accountApi")
 local event = require("event")
+local ttf = require("tableToFile")
 local component = require("component")
 local modem = component.modem
 
-local p = 123
+local p = ttf.load("serverData")["port"]
 
 local function handleMessage(_, _, from, port, _, type, sender, receiver, amount)
   if port ~= p then
