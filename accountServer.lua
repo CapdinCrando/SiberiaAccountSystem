@@ -11,6 +11,8 @@ local function handleMessage(_, _, from, port, _, type, sender, receiver, amount
 		return
 	end
 
+	if type = "createAccount" then
+		modem.send(from, p, accounts:createAccount(sender))
 	if type == "transfer" then
 		modem.send(from, p, accounts:transfer(sender, receiver, amount))
 	elseif type == "getAmount" then
@@ -19,6 +21,6 @@ local function handleMessage(_, _, from, port, _, type, sender, receiver, amount
   
 end
 
-accounts.setup()
+accounts.loadFile()
 modem.open(p)
 event.listen("modem_message", handleMessage)
