@@ -1,0 +1,23 @@
+local accounts = require("accountApi")
+local event = require("event")
+local component = require("component")
+local modem = component.modem
+
+local p = 123
+
+local function handleMessage(_, _, from, port, _, type, sender, receiver, amount)
+  if port ~= p then
+    return
+  end
+
+  if type == "transfer" then
+    modem.send(from, p, accounts:transfer(sender, receiver, amount))
+  elseif type == "getAmount" then
+    modem.send(from, p, accounts:getAmount(sender))
+  end
+  
+end
+
+accounts.setup()
+modem.open(p)
+event.listen("modem_message", handleMessage)
