@@ -2,7 +2,7 @@ local shell = require("shell")
 
 -- Download Files
 local header = "https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/"
-files = {"accountApi.lua", "tableToFile.lua", "accountServer.lua"}
+files = {"accountManager.lua", "tableToFile.lua", "accountServer.lua"}
 for _,f in ipairs(files) do
 	shell.execute("wget " .. header .. f)
 end
