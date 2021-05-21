@@ -1,49 +1,30 @@
 local ttf = require("tableToFile")
+local component = require("component")
+local modem = component.modem
 
 local accountApi = {}
 
-local accountFile = "accountData"
+local serverFile = "serverData"
 local data = {}
+local address = 0
+local port = 0
 
 function accountApi:loadFile()
 	data = ttf.load(accountFile)
+	address = data["address"]
+	port = data["port"]
 end
 
 function accountApi:createAccount(name)
-	if name == nil then
-		return "Please supply a name for the account!"
-	elseif data[name] == nil then
-		data[name] = 0
-		ttf.save(data, accountFile)
-		return "Account creation successful!"
-	else
-		return "Account already exists!"
-	end
+	return modem.send(address, port, "createAccount", name)
 end
 
 function accountApi:getAmount(name)
-	if data[name] == nil then
-		return "Account does not exist!"
-	else then
-		return data[name]
-	end
+	return modem.send(address, port, "getAmount", name)
 end
 
 function accountApi:transfer(sender, receiver, amount)
-	if sender == nil then
-		if receiver == nil then
-			return "Transfer function: nil input!"
-		end
-	elseif data[sender] == nil then
-		return "Sender account does not exist!"
-	elseif data[sender] >= amount then
-		data[sender] = data[sender] - amount
-	else then
-		return "Insufficient funds!"
-	end
-	data[receiver] = data[receiver] + amount
-	ttf.save(data, accountFile)
-	return "Transaction successful!"
+	return modem.send(address, port, "transfer", sender, receiver, amount)
 end
 
 return accountApi
