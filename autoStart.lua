@@ -12,7 +12,7 @@ local header = "https://raw.githubusercontent.com/CapdinCrando/"
 shell.execute("wget -f " .. header .. "SiberiaAccountSystem/master/downloadList.txt")
 
 -- Download Files
-local tableFile = assert(io.open("/" .. programName .. "/downloadList.txt"))
+local tableFile = assert(io.open("downloadList.txt"))
 local files = serialization.unserialize(tableFile:read("*all"))
 for k,v in pairs(files) do
 	for _,f in ipairs(v) do
