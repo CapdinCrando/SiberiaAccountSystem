@@ -41,4 +41,4 @@ shell.execute("rm " .. shell.resolve(process.info().path))
 shell.execute("rm tableToFile.lua")
 
 -- Restart computer
---computer.shutdown(true)
+computer.shutdown(true)
