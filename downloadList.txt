@@ -2,7 +2,6 @@
 	SiberiaAccountSystem = {
 		"accountManager.lua",
 		"tableToFile.lua",
-		"accountServer.lua",
-		"refreshAccountData.lua"
+		"accountServer.lua"
 	}
 }
