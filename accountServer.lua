@@ -5,9 +5,15 @@ local component = require("component")
 local modem = component.modem
 
 local p = ttf.load("serverData")["port"]
+local vendors = ttf.load("vendorData")
 
 local function handleMessage(_, _, from, port, _, type, sender, receiver, amount)
 	if port ~= p then
+		return
+	end
+	
+	if vendors[from] == nil then
+		modem.send(p, "Device is not a registered vendor!")
 		return
 	end
 
@@ -23,6 +29,7 @@ end
 
 local function handleRefresh()
 	accounts:loadFile()
+	vendors = ttf.load("vendorData")
 end
 
 accounts:loadFile()

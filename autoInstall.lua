@@ -13,6 +13,11 @@ local accountData = {}
 accountData["test"] = 0
 ttf.save(accountData,"accountData")
 
+-- Generate vendor data table
+local vendorData = {}
+vendorData["test"] = 0
+ttf.save(vendorData,"vendorData")
+
 -- Generate server data table
 local component = require("component")
 local serverData = {}
