@@ -2,7 +2,7 @@
 local shell = require("shell")
 local serialization = require("serialization")
 
-local programName = "accountSystem"
+local programName = "accountServer"
 
 -- Change PWD
 shell.setWorkingDirectory("/" .. programName .. "/")

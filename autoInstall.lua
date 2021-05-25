@@ -6,31 +6,30 @@ local programName = "accountServer"
 
 -- Create directory
 shell.execute("mkdir /".. programName)
-shell.setWorkingDirectory("/" .. programName .. "/")
 
 -- Download autoStart script
-shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/autoStart.lua")
+shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/autoStart.lua /" .. programName .. "/autoStart.lua")
 
 -- Download tableToFile API
-shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/tableToFile.lua")
+shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/tableToFile.lua tableToFile.lua")
 local ttf = require("tableToFile")
 
 -- Generate account data table
 local accountData = {}
 accountData["test"] = 0
-ttf.save(accountData,"accountData")
+ttf.save(accountData, "/" .. programName .. "/accountData")
 
 -- Generate vendor data table
 local vendorData = {}
 vendorData["test"] = 0
-ttf.save(vendorData,"vendorData")
+ttf.save(vendorData, "/" .. programName .. "/vendorData")
 
 -- Generate server data table
 local component = require("component")
 local serverData = {}
 serverData["address"] = component.modem.address
 serverData["port"] = 123 -- Change this before deploying!
-ttf.save(serverData,"serverData")
+ttf.save(serverData, "/" .. programName .. "/serverData")
 
 -- Write to .shrc (for startup)
 local startFile = assert(io.open("/home/.shrc", "a"))
@@ -39,6 +38,7 @@ startFile:close()
 
 -- Remove auto install script
 shell.execute("rm " .. shell.resolve(process.info().path))
+shell.execute("rm tableToFile.lua")
 
 -- Restart computer
-computer.shutdown(true)
+--computer.shutdown(true)
