@@ -24,7 +24,7 @@ end
 function accountManager:getAmount(name)
 	if data[name] == nil then
 		return "Account does not exist!"
-	else then
+	else
 		return data[name]
 	end
 end
@@ -38,7 +38,7 @@ function accountManager:transfer(sender, receiver, amount)
 		return "Sender account does not exist!"
 	elseif data[sender] >= amount then
 		data[sender] = data[sender] - amount
-	else then
+	else
 		return "Insufficient funds!"
 	end
 	data[receiver] = data[receiver] + amount

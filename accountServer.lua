@@ -24,7 +24,6 @@ local function handleMessage(_, _, from, port, _, type, sender, receiver, amount
 	elseif type == "getAmount" then
 		modem.send(from, p, accounts:getAmount(sender))
 	end
-  
 end
 
 local function handleRefresh()
