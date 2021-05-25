@@ -1,12 +1,19 @@
 local shell = require("shell")
+local computer = require("computer")
+local process = require("process")
 
 local programName = "accountServer"
 
 -- Create directory
 shell.execute("mkdir /".. programName)
+shell.setWorkingDirectory("/" .. programName .. "/")
 
 -- Download autoStart script
-shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/autoStart.lua /" .. programName .. "/autoStart.lua")
+shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/autoStart.lua")
+
+-- Download tableToFile API
+shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/tableToFile.lua")
+local ttf = require("tableToFile")
 
 -- Generate account data table
 local accountData = {}
@@ -29,3 +36,9 @@ ttf.save(serverData,"serverData")
 local startFile = assert(io.open("/home/.shrc", "a"))
 startFile:write("\n/" .. programName .. "/autoStart.lua\n")
 startFile:close()
+
+-- Remove auto install script
+shell.execute("rm " .. shell.resolve(process.info().path))
+
+-- Restart computer
+computer.shutdown(true)
