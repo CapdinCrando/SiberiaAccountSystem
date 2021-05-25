@@ -19,7 +19,7 @@ local function handleMessage(_, _, from, port, _, type, sender, receiver, amount
 
 	if type == "createAccount" then
 		modem.send(from, p, accounts:createAccount(sender))
-	if type == "transfer" then
+	elseif type == "transfer" then
 		modem.send(from, p, accounts:transfer(sender, receiver, amount))
 	elseif type == "getAmount" then
 		modem.send(from, p, accounts:getAmount(sender))
