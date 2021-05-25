@@ -1,5 +1,5 @@
 {
-	name = {
+	SiberiaAccountSystem = {
 		"accountManager.lua",
 		"tableToFile.lua",
 		"accountServer.lua",

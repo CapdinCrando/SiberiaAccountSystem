@@ -16,7 +16,7 @@ local tableFile = assert(io.open("/" .. programName .. "/downloadList.txt"))
 local files = serialization.unserialize(tableFile:read("*all"))
 for k,v in ipairs(files) do
 	for _,f in ipairs(v) do
-		shell.execute("wget -f " .. header .. k .. f)
+		shell.execute("wget -f " .. header .. k .. "/master/" .. f)
 	end
 end
 
