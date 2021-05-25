@@ -21,6 +21,11 @@ local function handleMessage(_, _, from, port, _, type, sender, receiver, amount
   
 end
 
-accounts.loadFile()
+local function handleRefresh()
+	accounts:loadFile()
+end
+
+accounts:loadFile()
 modem.open(p)
 event.listen("modem_message", handleMessage)
+event.listen("refreshData", handleRefresh)

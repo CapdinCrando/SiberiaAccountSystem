@@ -1,14 +1,12 @@
 local shell = require("shell")
 
--- Download Files
-local header = "https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/"
-files = {"accountManager.lua", "tableToFile.lua", "accountServer.lua"}
-for _,f in ipairs(files) do
-	shell.execute("wget " .. header .. f)
-end
+local programName = "accountServer"
 
--- Import Table API
-local ttf=require("tableToFile")
+-- Create directory
+shell.execute("mkdir /".. programName)
+
+-- Download autoStart script
+shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/autoStart.lua /" .. programName .. "/autoStart.lua")
 
 -- Generate account data table
 local accountData = {}
@@ -22,5 +20,7 @@ serverData["address"] = component.modem.address
 serverData["port"] = 123 -- Change this before deploying!
 ttf.save(serverData,"serverData")
 
--- Start server
-shell.execute("accountServer")
+-- Write to .shrc (for startup)
+local startFile = assert(io.open("/home/.shrc", "a"))
+startFile:write("\n/" .. programName .. "/autoStart.lua\n")
+startFile:close()
