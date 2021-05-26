@@ -3,6 +3,7 @@
 		"accountManager.lua",
 		"tableToFile.lua",
 		"accountServer.lua",
-		"refreshAccountData.lua"
+		"refreshAccountData.lua",
+		"addVendor.lua"
 	}
 }
