@@ -10,7 +10,7 @@ local address = 0
 local port = 0
 
 function accountApi:loadFile()
-	data = ttf.load(accountFile)
+	data = ttf.load(serverFile)
 	address = data["address"]
 	port = data["port"]
 end
