@@ -31,14 +31,13 @@ serverData["address"] = component.modem.address
 serverData["port"] = 123 -- Change this before deploying!
 ttf.save(serverData, "/" .. programName .. "/serverData")
 
+-- Copy server data to floppy
+shell.execute("cp /".. programName .. "/serverData /data/serverData")
+
 -- Write to .shrc (for startup)
 local startFile = assert(io.open("/home/.shrc", "a"))
 startFile:write("\n/" .. programName .. "/autoStart.lua\n")
 startFile:close()
-
--- Remove auto install script
-shell.execute("rm " .. shell.resolve(process.info().path))
-shell.execute("rm tableToFile.lua")
 
 -- Restart computer
 computer.shutdown(true)
