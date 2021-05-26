@@ -11,7 +11,7 @@ shell.execute("mkdir /".. programName)
 shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/autoStart.lua /" .. programName .. "/autoStart.lua")
 
 -- Download tableToFile API
-shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/tableToFile.lua tableToFile.lua")
+shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/tableToFile.lua /" .. programName .. "/tableToFile.lua")
 local ttf = require("tableToFile")
 
 -- Generate account data table
