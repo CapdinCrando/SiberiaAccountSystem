@@ -25,9 +25,15 @@ function accountManager:loadFile()
 end
 
 function accountManager:doesAccountExist(name)
+	if name == nil then
+		return false
+	end
+	
+	local returnValue = false
 	mutex_lock()
-	return data[name] == nil
+	returnValue = data[name] ~= nil
 	mutex_unlock()
+	return returnValue
 end
 
 function accountManager:createAccount(name)
