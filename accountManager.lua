@@ -8,7 +8,7 @@ local data = {}
 lock = 0
 
 local function mutex_lock()
-	while(lock) do
+	while lock == 1 do	
 		os.sleep(1)
 	end
 	lock = 1
