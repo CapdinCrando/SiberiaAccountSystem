@@ -24,6 +24,9 @@ local function handleMessage(_, _, from, port, _, type, sender, receiver, amount
 		if type == "createAccount" then
 			print("createAccount")
 			modem.send(from, p, accounts:createAccount(sender))
+		elseif type == "doesAccountExist" then
+			print("checkAccount")
+			modem.send(from, p, accounts:doesAccountExist(sender))
 		elseif type == "transfer" then
 			print("transfer")
 			modem.send(from, p, accounts:transfer(sender, receiver, amount))

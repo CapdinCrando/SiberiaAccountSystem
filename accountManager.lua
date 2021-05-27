@@ -24,6 +24,12 @@ function accountManager:loadFile()
 	mutex_unlock()
 end
 
+function accountManager:doesAccountExist(name)
+	mutex_lock()
+	return data[name] == nil
+	mutex_unlock()
+end
+
 function accountManager:createAccount(name)
 	local returnValue = "Account already exists!"
 	if name == nil then
