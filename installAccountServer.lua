@@ -21,7 +21,7 @@ ttf.save(accountData, "/" .. programName .. "/accountData")
 
 -- Generate vendor data table
 local vendorData = {}
-vendorData["test"] = 0
+table.insert(vendorData, "test")
 ttf.save(vendorData, "/" .. programName .. "/vendorData")
 
 -- Generate server data table

@@ -44,7 +44,7 @@ local function handleRefresh()
 	end)
 end
 
-local function addVendor(address)
+local function addVendor(_, address)
 	thread.create(function()
 		vendors:addVendor(address)
 	end)
