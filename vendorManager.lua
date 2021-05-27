@@ -37,8 +37,10 @@ end
 
 function vendorManager:addVendor(id)
 	mutex_lock()
-	table.insert(data, id)
-	ttf.save(data, vendorFile)
+	if data[id] == nil then
+		table.insert(data, id)
+		ttf.save(data, vendorFile)
+	end
 	mutex_unlock()
 end
 
