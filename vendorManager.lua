@@ -30,7 +30,12 @@ function vendorManager:isVendor(id)
 	end
 
 	mutex_lock()
-	local returnValue = data[id] ~= nil
+	local returnValue = false
+	for _, v in ipairs(data) do
+        if v == id then
+            return true
+        end
+    end
 	mutex_unlock()
 	return returnValue
 end
