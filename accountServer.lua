@@ -15,7 +15,7 @@ local function handleMessage(_, _, from, port, _, type, sender, receiver, amount
 			return
 		end
 		
-		if ~vendors:isVendor(from) then
+		if not vendors:isVendor(from) then
 			modem.send(from, p, "Device is not a registered vendor!")
 			print("Invalid vendor!")
 			return

@@ -25,7 +25,7 @@ function vendorManager:loadFile()
 end
 
 function vendorManager:isVendor(id)
-	if id == nil
+	if id == nil then
 		return false
 	end
 
