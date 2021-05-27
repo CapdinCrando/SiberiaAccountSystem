@@ -24,7 +24,7 @@ function accountApi:loadFile()
 	modem.open(port)
 end
 
-function accountManager:doesAccountExist(name)
+function accountApi:doesAccountExist(name)
 	modem.send(address, port, "doesAccountExist", name)
 	return getModemMessage()
 end
