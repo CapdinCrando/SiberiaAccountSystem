@@ -5,17 +5,17 @@ local accountManager = {}
 local accountFile = "accountData"
 local data = {}
 
-lock = 0
+accountLock = 0
 
 local function mutex_lock()
-	while lock == 1 do	
+	while accountLock == 1 do	
 		os.sleep(1)
 	end
-	lock = 1
+	accountLock = 1
 end
 
 local function mutex_unlock()
-	lock = 0
+	accountLock = 0
 end
 
 function accountManager:loadFile()

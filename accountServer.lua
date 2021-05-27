@@ -1,4 +1,5 @@
 local accounts = require("accountManager")
+local vendors = require("vendorManager")
 local event = require("event")
 local ttf = require("tableToFile")
 local component = require("component")
@@ -6,7 +7,6 @@ local thread = require("thread")
 local modem = component.modem
 
 local p = ttf.load("serverData")["port"]
-local vendors = ttf.load("vendorData")
 
 local function handleMessage(_, _, from, port, _, type, sender, receiver, amount)
 	thread.create(function()
@@ -15,7 +15,7 @@ local function handleMessage(_, _, from, port, _, type, sender, receiver, amount
 			return
 		end
 		
-		if vendors[from] == nil then
+		if ~vendors:isVendor(from) then
 			modem.send(from, p, "Device is not a registered vendor!")
 			print("Invalid vendor!")
 			return
@@ -40,18 +40,18 @@ end
 local function handleRefresh()
 	thread.create(function()
 		accounts:loadFile()
-		vendors = ttf.load("vendorData")
+		vendors:loadFile()
 	end)
 end
 
 local function addVendor(address)
 	thread.create(function()
-		table.insert(vendors, address)
-		vendors = ttf.save("vendorData")
+		vendors:addVendor(address)
 	end)
 end
 
 accounts:loadFile()
+vendors:loadFile()
 modem.open(p)
 event.listen("modem_message", handleMessage)
 event.listen("refreshData", handleRefresh)
