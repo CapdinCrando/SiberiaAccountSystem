@@ -12,7 +12,7 @@ shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccoun
 
 -- Download tableToFile API
 shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/tableToFile.lua /" .. programName .. "/tableToFile.lua")
-local ttf = require("tableToFile")
+local ttf = require("/" .. programName .. "/tableToFile")
 
 -- Generate account data table
 local accountData = {}
