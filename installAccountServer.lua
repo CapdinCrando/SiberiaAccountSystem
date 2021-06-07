@@ -7,12 +7,15 @@ local programName = "accountServer"
 -- Create directory
 shell.execute("mkdir /".. programName)
 
+-- Change PWD
+shell.setWorkingDirectory("/" .. programName .. "/")
+
 -- Download autoStart script
 shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/autoStart.lua /" .. programName .. "/autoStart.lua")
 
 -- Download tableToFile API
 shell.execute("wget https://raw.githubusercontent.com/CapdinCrando/SiberiaAccountSystem/master/tableToFile.lua /" .. programName .. "/tableToFile.lua")
-local ttf = require("/" .. programName .. "/tableToFile")
+local ttf = require("tableToFile")
 
 -- Generate account data table
 local accountData = {}
