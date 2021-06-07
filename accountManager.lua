@@ -38,6 +38,7 @@ end
 
 function accountManager:createAccount(name)
 	local returnValue = "Account already exists!"
+	print("ahhh")
 	if name == nil then
 		returnValue = "Please supply a name for the account!"
 	else 
