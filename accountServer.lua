@@ -20,6 +20,8 @@ local function handleMessage(_, _, from, port, _, type, sender, receiver, amount
 			print("Invalid vendor!")
 			return
 		end
+
+		print('\nMessage recieved.')
 	
 		if type == "createAccount" then
 			modem.send(from, p, accounts:createAccount(sender))
